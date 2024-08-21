@@ -3,13 +3,13 @@ import { resData } from "../utils/constant";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRes, setListOfRes] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRes, setFilteredRes] = useState([]);
 
-  console.log("rerender-");
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5493214&lng=73.9315733&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -17,10 +17,6 @@ const Body = () => {
 
     const json = await data.json();
 
-    // console.log(
-    //   "swiggy ->>   ",
-    //   json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    // );
     setListOfRes(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -32,6 +28,17 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const onlineStatus = useOnlineStatus();
+
+  if (!onlineStatus) {
+    return (
+      <h1>
+        Seems like you are offline, Please try again later with proper internet
+        connection!!!!!!
+      </h1>
+    );
+  }
 
   return listOfRes?.length ? (
     <div className="body">
