@@ -11,8 +11,8 @@ class About extends Component {
       userInfo: {
         name: "Dummy",
         location: "Default",
-        avatar_url: "",
-      },
+        avatar_url: ""
+      }
     };
   }
 
@@ -21,7 +21,7 @@ class About extends Component {
     const json = await data.json();
 
     this.setState({
-      userInfo: json,
+      userInfo: json
     });
     console.log("p CDM");
   }
@@ -38,9 +38,9 @@ class About extends Component {
     const { name, location, avatar_url } = this.state.userInfo;
     console.log("p render");
     return (
-      <div>
-        <h1>About Us</h1>
-        <h2>This is Namaste React</h2>
+      <div className="flex flex-col m-4 p-6 bg-slate-50 rounded-lg shadow-lg ">
+        <h1 className="text-xl font-bold text-gray-800 mb-2">About Us</h1>
+        <h2 className="text-lg text-gray-600 mb-4">This is Namaste React</h2>
         <UserClass name={name} location={location} avatar_url={avatar_url} />
       </div>
     );
