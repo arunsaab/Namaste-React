@@ -143,3 +143,6 @@ export const resData = [
 
 export const RESTMENU =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5493214&lng=73.9315733&restaurantId=";
+
+export const LOGO_URL =
+  "https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png";
